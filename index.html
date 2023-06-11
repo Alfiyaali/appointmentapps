@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="form">
+        <label for="">Dish </label>
+        <input type="text" name="name" id="fname">
+
+        <label for="">Choose Price</label>
+        <input type="number" name="price" id="fprice">
+
+       <select name="table" id="ftable">
+        <option value="">Table1</option>
+        <option value="">Table2</option>
+        <option value="">Table3</option>
+       </select>
+
+        <input type="submit" value="Add Item" onclick="showDataOnScreen()">
+    </form>
+
+    <ul id="user">
+        <li>Table1</li>
+   <li>Table2</li>
+   <li>Table3</li>
+    </ul>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
