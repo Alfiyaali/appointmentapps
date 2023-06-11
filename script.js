@@ -1,31 +1,54 @@
-const form = document.getElementById('form');
 
-form.addEventListener('submit', function(e){
-    e.preventDefault();
+function saveToLocalStorage(event){
+    event.preventDefault();
+    const name = event.target.fname.value;
+    const email = event.target.femail.value;
+    const phone = event.target.fphone.value;
 
-    const playload = new FormData(form);
-    console.log([...playload]);
+    const obj = {
+        name,
+        email,
+        phone
+    }
 
-    axios.get('https://crudcrud.com/api/fce2c1d7821b480c8bb319ed6c087a37/users')
-    .then((res)=> console.log(res.data))
-    .catch((err)=> console.log(err))
+    axios.post("https://crudcrud.com/api/29e9418555e74b03b878c1c65b3fe343/app",obj)
+    .then((response) =>{
+        showUser(response.data)
+        console.log(response)
+    })
 
-    const user ={
-        name: document.getElementById('fname').value,
-        price: document.getElementById('fprice').value,
-        table: document.getElementById('ftable')
-    };
-    axios.post('https://crudcrud.com/api/fce2c1d7821b480c8bb319ed6c087a37/users', user)
-.then((res)=>console.log(res))
-.catch((err) => console.log(err))
+    .catch((err) =>{
+        document.body.innerHTML = document.body.innerHTML+" <h4>Something wrong</h4>"
+        console.log(err)
+    })
+
+    // localStorage.setItem(obj.email, JSON.stringify(obj))
+    showUser(obj)
+}
+
+window.addEventListener("DOMContentLoaded", () =>{
+   
+    const localStorageObj = localStorage;
+    const localStorageKeys = Object.keys(localStorageObj)
+
+    for(var i=0; i<localStorageKeys.length;i++){
+        const key = localStorageKeys[i]
+        const userDetailsString = localStorageObj[key];
+        const userDetailsObj = JSON.parse(userDetailsString);
+        showUser(userDetailsObj)
+    }
 })
 
-
-
-function showDataOnScreen(){
+function showUser(user){
+    var email = document.getElementById('femail').value;
     var name = document.getElementById('fname').value;
-    var price =  document.getElementById('fprice').value;
-    var table = document.getElementById('ftable').value;
+    var phone = document.getElementById('fphone').value;
+    var result = name+"  "+email+"  "+phone
+    document.getElementById('list-of-users').textContent = result;
 
-    document.getElementById('user').innerHTML = "Choclate name- "+name+" Price- "+price+" Table- "+form.ftable[form.ftable.selectedIndex].text;
+    const editButton = document.createElement('button');
+            editButton.innerText= "EDIT";
+            newLi.appendChild(editButton);
+            editButton.addEventListener('click', editing);
+    // console.log(localStorage.getItem(user.email));
 }
