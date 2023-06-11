@@ -2,33 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Appointment App</title>
 </head>
 <body>
-    <form action="" id="form">
-        <label for="">Dish </label>
-        <input type="text" name="name" id="fname">
+    <form action="" onsubmit="saveToLocalStorage(event)" id="taskForm">
+        <label for="">
+            <label for="">Name: </label>
+            <input type="text" name="name" id="fname">
+            <label for="">Email-Id: </label>
+            <input type="email" name="email" id="femail">
+            <label for="">Phone Number: </label>
+            <input type="tel" name="phone" id="fphone">
 
-        <label for="">Choose Price</label>
-        <input type="number" name="price" id="fprice">
-
-       <select name="table" id="ftable">
-        <option value="">Table1</option>
-        <option value="">Table2</option>
-        <option value="">Table3</option>
-       </select>
-
-        <input type="submit" value="Add Item" onclick="showDataOnScreen()">
+            <input type="submit" value="Submit" id="addButton">
+        </label>
     </form>
 
-    <ul id="user">
-        <li>Table1</li>
-   <li>Table2</li>
-   <li>Table3</li>
-    </ul>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <ul id="list-of-users"></ul>
+
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 </body>
 </html>
